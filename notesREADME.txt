@@ -59,3 +59,17 @@ OR logic for authentication in MongoDB:
 db.users.findOne({$or:[ {firstname:newUser.firstname},{lastname: newUser.lastname},{email: newUser.email}]}
 
 page redirection (setTimeout(function(){window.location.href='form2.html'},5000);)
+
+
+
+--------------------------------
+db.users.findOne({username: username,password: password},function(err,doc){
+    if(err){
+        res.json({status: 0, message: err});
+    } if (!doc) {
+        res.json({status: 0, msg: "not found"});
+    }
+    res.json({status: 1, message: " success"});
+})
+
+for authentication in the DB
