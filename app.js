@@ -61,7 +61,7 @@ app.get('/Login',function(req,res){
 })
 
 app.post('/Login',function(req,res,next){
-    res.send("Im in the login route")
+    console.log("Authenticating User")
     authenticate(req,res)
 })
 
@@ -70,8 +70,21 @@ function authenticate(req,res){
 
     username  = req.body.username;
     password = req.body.password;
+    console.log("The username:  " + username)
 
-//    console.log("The username:  " + username)
+db.users.findOne({username: username,password: password},function(err,doc){
+    if(err){
+       throw err;
+    }  if(doc && doc._id){
+        if(password==doc["password"]){
+            res.send("Welcome  "+doc.firstname)
+        }else{
+            res.send("Invalid login")
+        }
+    }else{
+        res.send("Invalid login")
+    }
+});
 }
 //app.use(authenticate())
 
