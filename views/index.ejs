@@ -1,0 +1,46 @@
+<!-- if including a JS statement use this (<%%> ), writing to the page use (<%= %>) -->
+<% include partials/header %>
+<h2> New User Registration </h2>
+<!--check for empty errors beforehand -->
+
+<% if(errors != undefined){ %>
+<ul>
+    <% errors.forEach(function(error){ %>
+    <li><%= error.msg %></li>
+
+    <% }) %>
+</ul>
+<% } %>
+
+<!--Display a form-->
+<form method="POST" action="/users/add">
+    <label>First Name: </label>
+    <input type="text" name="firstname" required="required">
+    <br>
+    <br>
+    <label>Last Name: </label>
+    <input type="text" name="lastname" required="required">
+    <br>
+    <br>
+    <label>Email: </label>
+    <input type="email" name="email" required="required">
+    <br>
+    <br>
+    <label>Username: </label>
+    <input type="text" name="username" required="required">
+    <br>
+    <br>
+    <label>Password: </label>
+    <input type="password" name="password" required="required">
+    <br>
+    <br>
+    <label>Re-enter Password: </label>
+    <input type="password" name="repassword" required="required">
+    <br>
+    <br>
+    <input type="submit" value="Submit">
+
+</form>
+
+
+<% include partials/footer %>
